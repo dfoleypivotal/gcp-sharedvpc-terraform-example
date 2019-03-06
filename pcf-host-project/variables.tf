@@ -15,3 +15,5 @@ variable "zones" {
 }
 
 variable "project" {}
+
+variable "on_premise_range" {}
