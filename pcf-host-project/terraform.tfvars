@@ -1,6 +1,6 @@
-env_name = "pcf-sharedvpc"
+env_name = "pcf-2-5"
 project = "shared-vpc-testing-209021"
-network = "pcf-sharedvpc-network"
+network = "pcf-2-5-network"
 region = "us-west1"
 zones = ["us-west1-a", "us-wesst1-b", "us-west1-c"]
 infra_subnet_range = "192.168.101.0/26"

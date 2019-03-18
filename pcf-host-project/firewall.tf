@@ -1,8 +1,8 @@
 resource "google_compute_firewall" "pcf-allow-pas-alll" {
   name        = "${var.env_name}-allow-pas-all"
   network     = "${google_compute_network.pcf-network.self_link}"
-  target_tags = ["pcf", "pcf-opsman", "nat-traverse"]
-  source_tags = ["pcf", "pcf-opsman", "nat-traverse"]
+  target_tags = ["${var.env_name}", "pcf-opsman", "nat-traverse"]
+  source_tags = ["${var.env_name}", "pcf-opsman", "nat-traverse"]
 
   allow {
     protocol = "icmp"
@@ -25,6 +25,19 @@ resource "google_compute_firewall" "pcf-allow-ssh" {
   allow {
     protocol = "tcp"
     ports    = ["22"]
+  }
+
+  source_ranges = ["${var.on_premise_range}"]
+}
+
+resource "google_compute_firewall" "pcf-allow-rdp" {
+  name        = "${var.env_name}-allow-rdp"
+  network     = "${google_compute_network.pcf-network.self_link}"
+  target_tags = ["allow-rdp"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["3389"]
   }
 
   source_ranges = ["${var.on_premise_range}"]
